@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { createRoot } from 'react-dom/client'
-import { Box, Button, Card, CardContent, Grid, TextField, Typography } from '@material-ui/core'
+import { Box, Button, Card, CardContent, Grid, Switch, TextField, Typography } from '@material-ui/core'
 import 'fontsource-roboto'
 import './options.css'
 import { getStoredOptions, LocalStorageOptions, setStoredOptions } from '../utils/storage'
@@ -34,6 +34,13 @@ const App: React.FC<{}> = () => {
     })
   }
 
+  const handleAutoOverlayChange = (hasAutoOverlay: boolean) => {
+    setOptions({
+      ...options,
+      hasAutoOverlay,
+    })
+  }
+
   if (!options) {
     return null;
   }
@@ -49,11 +56,20 @@ const App: React.FC<{}> = () => {
               <Typography variant='h4'>Weather Extension Options</Typography>
             </Grid>
             <Grid item>
-              <Typography variant='body1'>Home City Name:</Typography>
+              <Typography variant='body1'>Home city name</Typography>
               <TextField 
                 placeholder='Enter a home city' 
                 value={options.homeCity} 
                 onChange={event => handleHomeCityChange(event.target.value)}
+                disabled={isFieldDisabled}
+              />
+            </Grid>
+            <Grid item>
+              <Typography variant='body1'>Auto toggle overlay on web page:</Typography>
+              <Switch 
+                color='primary'
+                checked={options.hasAutoOverlay}
+                onChange={(event, checked) => handleAutoOverlayChange(checked)}
                 disabled={isFieldDisabled}
               />
             </Grid>

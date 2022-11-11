@@ -35,3 +35,7 @@ export const fetchOpenWeatherData = async (city: string, tempScale: OpenWeatherT
   const data: OpenWeatherData = await res.json()
   return data;
 };
+
+export const getWeatherIconSrc = (iconCode: string)  => {
+  return `https://openweathermap.org/img/wn/${iconCode}@2x.png`
+}
