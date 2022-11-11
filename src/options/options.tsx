@@ -1,5 +1,6 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
+import 'fontsource-roboto'
 import './options.css'
 
 const App: React.FC<{}> = () => {
